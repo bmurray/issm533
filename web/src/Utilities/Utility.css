@@ -1,0 +1,68 @@
+textarea {
+    width: 100%;
+}
+div.encrypted {
+    margin: 10px;
+}
+
+.spinner i:first-child {
+    border: 1px solid blue;
+    border-radius: 8px 0px 0px 8px;    
+}
+.spinner i:last-child {
+    border: 1px solid blue;
+    border-radius: 0px 8px 8px 0px;    
+}
+.spinner i {
+    cursor: pointer;
+}
+.spinner * {
+    padding: 5px 10px;
+    margin: 0px;
+    background: white;
+    height: 1em;
+}
+.spinner {
+    padding: 5px;
+    margin: 10px;
+    /* border: 1px solid blue; */
+    color: blue;
+}
+.spinner span {
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+    display: inline-block;
+}
+
+.spinner i:hover, .spinner i:active {
+    background: #aaa;
+}
+
+.segmented span:hover, .segmented span:active {
+    background: #aaa;
+}
+.segmented span {
+    border-left: 1px solid blue;
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0px;
+    background: white;
+    height: 1em;
+    color: blue;
+    cursor: pointer;
+
+}
+.segmented span.selected {
+    background: #33e;
+    color: white;
+}
+.segmented span:first-child {
+    border: 1px solid blue;
+    border-radius: 8px 0px 0px 8px;    
+}
+.segmented span:last-child {
+    border: 1px solid blue;
+    border-radius: 0px 8px 8px 0px;    
+}

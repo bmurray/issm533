@@ -1,0 +1,29 @@
+table.vigenere {
+    border-collapse: collapse;
+    margin: 0px;
+    width: 100%;
+}
+
+table.vigenere th, table.vigenere td {
+font-family: monospace;
+border: 1px solid #999;
+font-size: 1.0rem;
+text-align: center;
+
+}
+table.vigenere .active {
+    background: #4D4A03;
+
+}
+table.vigenere .selected {
+    font-weight: bold;
+    background: #ffee00;
+    color: black;
+}
+div.vigenere {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+div.vigenere div {
+    margin: 10px;
+}
