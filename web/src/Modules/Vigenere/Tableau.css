@@ -27,3 +27,6 @@ div.vigenere {
 div.vigenere div {
     margin: 10px;
 }
+.vigenere input,  .vigenere textarea {
+    max-width: 400px;
+}

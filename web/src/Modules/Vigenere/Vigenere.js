@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Tableau from './Tableau'
 import Encrypter from '../../Utilities/Encrypter'
-
+import useSegmented from '../../Utilities/Segmented'
 import './Tableau.css'
 
 function Vigenere(props) {
     const [key, setKey] = useState("")
     const base = props.alphabet.split('')
-
+    const [selected, segment] = useSegmented(["Repeat", "Truncate"], "Repeat")
     const changeKey = (e) => {
         let input = e.target.value.toUpperCase()
 
@@ -22,7 +22,11 @@ function Vigenere(props) {
 
     const kv = key.split('')
     const encrypt = (text) => {
-        const input = text.toUpperCase().split('')
+
+        var input = text.toUpperCase().split('')
+        if (selected === "Truncate") {
+            input.splice(key.length, input.length - key.length)
+        }
         let output = new Array(input.length)
         let ki = -1;
         let idx = -1;
@@ -50,7 +54,10 @@ function Vigenere(props) {
     }
 
     const decrypt = (text) => {
-        const input = text.toUpperCase().split('')
+        var input = text.toUpperCase().split('')
+        if (selected === "Truncate") {
+            input.splice(key.length, input.length - key.length)
+        }
         let output = new Array(input.length)
         let idx = -1;
         let ki = -1;
@@ -87,6 +94,7 @@ function Vigenere(props) {
         <div><Tableau alphabet={props.alphabet} /></div>
         <div>
             Key: <input type="text" value={key} onChange={changeKey} />
+            {segment}
             <Encrypter encrypt={encrypt} decrypt={decrypt} />
         </div>
     </div>)
