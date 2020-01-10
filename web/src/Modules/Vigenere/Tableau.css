@@ -21,11 +21,13 @@ table.vigenere .selected {
     color: black;
 }
 div.vigenere {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 div.vigenere div {
     margin: 10px;
+    width: 100%;
 }
 .vigenere input,  .vigenere textarea {
     max-width: 400px;

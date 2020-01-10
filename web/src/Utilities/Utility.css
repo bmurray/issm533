@@ -3,6 +3,11 @@ textarea {
 }
 div.encrypted {
     margin: 10px;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+div.encrypter {
+    max-width: 400px;
 }
 
 .spinner i:first-child {

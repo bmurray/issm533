@@ -13,7 +13,7 @@ function Encrypter(props) {
     const [selected, segment] = useSegmented(["Encrypt", "Decrypt"], "Encrypt")
 
     const encrypted = selected === "Encrypt" ? props.encrypt(input) : props.decrypt(input)
-    return (<div>
+    return (<div class="encrypter">
         <h3>Enter text to encrypt</h3>
         <textarea onChange={changeInput} value={input} /><br />
         {segment}<br />
