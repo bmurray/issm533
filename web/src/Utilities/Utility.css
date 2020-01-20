@@ -25,7 +25,7 @@ div.encrypter {
     padding: 5px 10px;
     margin: 0px;
     background: white;
-    height: 1em;
+    height: 1.8em;
 }
 .spinner {
     padding: 5px;
@@ -57,6 +57,7 @@ div.encrypter {
     height: 1em;
     color: blue;
     cursor: pointer;
+    min-height: 1.8em;
 
 }
 .segmented span.selected {

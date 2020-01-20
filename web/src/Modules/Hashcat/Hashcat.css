@@ -1,0 +1,21 @@
+.hashcat-flex {
+    display: flex;
+}
+.hashcat-flex div {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+table.passwords.hashcat {
+    border-collapse: collapse;
+    margin: 10px;
+}
+
+table.passwords.hashcat th {
+    text-align: right;
+}
+table.passwords.hashcat td {
+    font-family: monospace;
+    border: 1px solid #999;
+    font-size: 1rem;
+
+}
