@@ -2,4 +2,5 @@
 # Used for building binaries
 /build
 /passwords.db
+pkged.go
 .DS_Store
