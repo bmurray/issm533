@@ -9,11 +9,14 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/crypto/pbkdf2"
 	"hash"
 	"log"
 	"sync"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
+	"golang.org/x/crypto/pbkdf2"
+	"golang.org/x/crypto/scrypt"
 )
 
 type Password struct {
@@ -94,8 +97,20 @@ func NewEncoding(enc, plain string) (Encoding, error) {
 		x = makePBKDF2(plain, "sha256", 8, 1000, 32, sha256.New)
 	case "pbkdf2-sha512":
 		x = makePBKDF2(plain, "sha512", 8, 1000, 32, sha512.New)
+	case "bcrypt":
+		z, err := bcrypt.GenerateFromPassword([]byte(plain), 10)
+		if err != nil {
+			return Encoding{}, err
+		}
+		x = string(z)
+	case "scrypt":
+		x = makeSCrypt(plain, 8, 32768, 32)
+
 	default:
 		return Encoding{}, fmt.Errorf("Unknown encoding: %s", enc)
+	}
+	if len(x) < 1 {
+		return Encoding{}, fmt.Errorf("Cannot make encoding: %s", enc)
 	}
 	return Encoding{encoded: x, encoding: enc, duration: time.Now().Sub(t)}, nil
 }
@@ -129,4 +144,26 @@ func makePBKDF2(plain, hashtype string, saltlen, iter, len int, h func() hash.Ha
 	salt64 := base64.StdEncoding.EncodeToString(salt)
 	hash64 := base64.StdEncoding.EncodeToString(dk)
 	return fmt.Sprintf("%s:%d:%s:%s", hashtype, iter, salt64, hash64)
+}
+func makeSCrypt(plain string, saltlen, cost, keyLen int) string {
+	const (
+		r = 8
+		p = 1
+	)
+	salt := make([]byte, saltlen)
+	_, err := rand.Read(salt)
+	if err != nil {
+		fmt.Println("Cannot generate salt", err)
+		return ""
+	}
+	dk, err := scrypt.Key([]byte(plain), salt, cost, r, p, keyLen)
+	if err != nil {
+		return ""
+	}
+	salt64 := base64.StdEncoding.EncodeToString(salt)
+	hash64 := base64.StdEncoding.EncodeToString(dk)
+	x := fmt.Sprintf("SCRYPT:%d:%d:%d:%s:%s", cost, r, p, salt64, hash64)
+	// fmt.Printf("SCrypt: %s\n", x)
+	return x
+
 }
