@@ -64,7 +64,7 @@ function Hashcat(props) {
 }
 
 function Passwords(props) {
-    const encodings = ["md5", "sha1", "sha512", "pbkdf2-md5", "pbkdf2-sha256", "bcrypt", "scrypt"]
+    const encodings = ["md5", "sha1", "sha512", "md5-salted", "sha512-salted", "pbkdf2-md5", "pbkdf2-sha512", "bcrypt", "scrypt"]
 
     return (<table className="hashcat passwords">
         <thead>
