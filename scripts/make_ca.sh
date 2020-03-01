@@ -230,7 +230,7 @@ authorityKeyIdentifier  = keyid:always
 
 [ user_ext ] 
 basicConstraints        = critical, CA:false
-keyUsage                = critical, digitalSignature
+keyUsage                = critical, digitalSignature, keyEncipherment
 extendedKeyUsage        = critical, clientAuth, emailProtection
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always
