@@ -194,8 +194,8 @@ keyUsage                = critical, keyCertSign, cRLSign
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always
 #issuerAltName           = issuer:copy
-#authorityInfoAccess     = @root_ocsp_info
-#crlDistributionPoints   = root_crl_dist
+authorityInfoAccess     = @root_ocsp_info
+crlDistributionPoints   = root_crl_dist
 
 # OCSP Server has special requirements
 [ ocsp_ext ]
@@ -215,8 +215,8 @@ extendedKeyUsage        = critical, serverAuth
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always
 #issuerAltName           = issuer:copy
-#authorityInfoAccess     = @intermediate_ocsp_info
-#crlDistributionPoints   = intermediate_crl_dist
+authorityInfoAccess     = @intermediate_ocsp_info
+crlDistributionPoints   = intermediate_crl_dist
 
 [ client_ext ]
 basicConstraints        = critical, CA:false
@@ -225,8 +225,8 @@ extendedKeyUsage        = critical, clientAuth
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always
 #issuerAltName           = issuer:copy
-#authorityInfoAccess     = @intermediate_ocsp_info
-#crlDistributionPoints   = intermediate_crl_dist
+authorityInfoAccess     = @intermediate_ocsp_info
+crlDistributionPoints   = intermediate_crl_dist
 
 [ user_ext ] 
 basicConstraints        = critical, CA:false
@@ -235,8 +235,8 @@ extendedKeyUsage        = critical, clientAuth, emailProtection
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always
 #issuerAltName           = issuer:copy
-#authorityInfoAccess     = @intermediate_ocsp_info
-#crlDistributionPoints   = intermediate_crl_dist
+authorityInfoAccess     = @intermediate_ocsp_info
+crlDistributionPoints   = intermediate_crl_dist
 
 EOF
 
@@ -310,6 +310,6 @@ openssl rand -hex 16 >Intermediate/serial
 mkdir Requests
 
 # Package up the certificates
-cat Root/cacert.pem >Requests/cacert.pem
+cat Root/cacert.pem >Requests/ca.pem
 cat Intermediate/cacert.pem >Requests/chain.pem
 
